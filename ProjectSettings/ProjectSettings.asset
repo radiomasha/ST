@@ -143,9 +143,6 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: 11400000, guid: d2a3bbf11e4ac4d71b75afde402c5294, type: 2}
-  - {fileID: 11400000, guid: 3fd9dc51b870b4f838563ed2cc0eeeb2, type: 2}
-  - {fileID: 5874888343988471897, guid: ada079cbd2ded4410b618edf61bdf43b, type: 2}
-  - {fileID: -4646368584723520356, guid: 8a55e4be8dc2b4482b81abc357170e17, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -166,7 +163,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.UnityTechnologies.com.unity.template.urpblank
+    Android: com.radiomasha.st
     Standalone: com.Unity-Technologies.com.unity.template.urp-blank
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
@@ -531,7 +528,7 @@ PlayerSettings:
     m_APIs: 10000000
     m_Automatic: 1
   - m_BuildTarget: AndroidPlayer
-    m_APIs: 150000000b000000
+    m_APIs: 15000000
     m_Automatic: 0
   m_BuildTargetVRSettings: []
   m_DefaultShaderChunkSizeInMB: 16
