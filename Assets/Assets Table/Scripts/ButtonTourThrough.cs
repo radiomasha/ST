@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Meta.XR.BuildingBlocks;
 using Oculus.Interaction;
 using TMPro;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class ButtonTourThrough : MonoBehaviour
         [Header("Table Elements")]
         [SerializeField]
         private TextMeshProUGUI _textMesh;
+        [SerializeField] private TextMeshProUGUI _textMesh2;
         [SerializeField] private GameObject _napkin;
         [SerializeField] private GameObject _charger;
         [SerializeField] private GameObject _spoon;
@@ -46,7 +48,9 @@ public class ButtonTourThrough : MonoBehaviour
         [SerializeField] private GameObject _whiteWineGlass;
         [SerializeField] private GameObject _champagneGlass;
         [SerializeField] private GameObject _cutleryQuads;
-        [SerializeField] private TestUser _testUser;
+    
+
+        [SerializeField] private GameObject _pokeInteraction;
         [SerializeField]
         private ColorState _normalColorState = new ColorState() { Color = Color.white };
         //[SerializeField]
@@ -55,7 +59,7 @@ public class ButtonTourThrough : MonoBehaviour
         private ColorState _selectColorState = new ColorState() { Color = Color.green };
         //[SerializeField]
        // private ColorState _disabledColorState = new ColorState() { Color = Color.grey };
-        
+       public bool _isCompleted = false;
         private Color _currentColor;
         private ColorState _target;
         private int _colorShaderID;
@@ -68,17 +72,17 @@ public class ButtonTourThrough : MonoBehaviour
 
         private string[] _messages =
         {
-            "Do you have an important celebration in a restaurant, but have know idea what to do with all the dishes? No worries, we have your back.",
-            "This is a napkin. You simply unfold it and put on your knees",
-            "This big plate is called charger and it is here simply for decoration",
-            "No cutlery. This is usually the scariest part. But actually the amount depends on the number of dishes. And pieces a used from outside to the plate. Let's have a closer look",
-            "A soup spoon. The form maybe slightly different, but it simply means that soup will be served",
+            "Do you have an important celebration in a fancy restaurant, but have no idea what to do with all the tableware? No worries, we have your back.",
+            "First of all, napkin. You simply unfold it and put on your knees",
+            "This big plate is called 'charger' and it is here for decoration and keeping your cutlery",
+            "Now cutlery. This is usually the scariest part. But actually the amount depends on the number of dishes. And pieces are used from outside to the plate. Let's have a closer look",
+            "A soup spoon. The form maybe slightly different depends on the type of the soup, but it simply means that soup will be served",
             "Next, a fork and a knife. Probably for a salad. No worries, just follow the flow",
-            "Another pair of a fork and a knife. There exist special knife and fork for fish, though quite often they will put a usual pair",
-            "The last set is for a main course. Remember to cut food you keep a knife in the right hand and a fork in the left. Don't cut your food with a side of fork",
+            "Another pair of a fork and a knife. There are special knife and fork for fish, though quite often they will put usual ones",
+            "The last set is for a main course. Remember that while cutting your food, you keep a knife in the right hand and a fork in the left. Don't cut your food with a side of the fork",
             "A small plate is for bread. A knife for butter will be on the plate",
             "On the right you will probably see a bunch of glasses. No worries, just take the one a waiter pours for each course",
-            "Above the charger there is cutlery for a dessert. Instead of spoon you can see a knife. Don't cut a dessert with the side of fork",
+            "Above the charger there is cutlery for a dessert. Instead of spoon you can sometimes see a knife. Don't cut a dessert with the side of fork",
             "Ok, let's revise what we learnt."
         };
         
@@ -250,12 +254,20 @@ public class ButtonTourThrough : MonoBehaviour
                _champagneGlassRend.material.color = Color.white;
                _dessForkRend.material.color = Color.white;
                _desSpoonRend.material.color = Color.white;
-               _testUser.BeginTest();
+               _isCompleted = true;
+               StartCoroutine(DeactivateTextPanel());
             }
             
         }
 
-    
+        private IEnumerator DeactivateTextPanel()
+        {   _textMesh.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            _pokeInteraction.SetActive(false);
+            
+        }
+
+
         private IEnumerator ChangeColor(ColorState targetState)
         {
             Color startColor = _currentColor;
